@@ -65,7 +65,6 @@ const sendErrorProd = (err, req, res) => {
   // B) RENDERED WEBSITE
   // A) Operational, trusted error: send message to client
   if (err.isOperational) {
-    console.log(err);
     return res.status(err.statusCode).render('error', {
       title: 'Something went wrong!',
       msg: err.message,
@@ -82,7 +81,6 @@ const sendErrorProd = (err, req, res) => {
 };
 
 module.exports = (err, req, res, next) => {
-  // console.log(err.stackTrace);
   err.statusCode = err.statusCode || 500;
   err.status = err.status || 'error';
 
